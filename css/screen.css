@@ -1,0 +1,35 @@
+body {
+	color: #333;
+	font: normal 13px arial, helvetica, sans-serif;
+	background-color: #fff;
+}
+
+.centerLayout {
+	margin: 0px auto;
+}
+
+#container {
+	width: 710px;
+}
+
+table {
+	border-spacing: 0px;
+	border: 1px solid black;
+}
+
+th {
+	font: bold 11px arial, helvetica, sans-serif;
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	border-top: 1px solid #C1DAD7;
+	letter-spacing: 2px;
+	padding: 6px 12px;
+	background: #CAE8EA;
+}
+
+td {
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	background: #fff;
+	padding: 6px 12px;
+}

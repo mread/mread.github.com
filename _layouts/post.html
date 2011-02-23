@@ -5,6 +5,6 @@ layout: base
     {% include nav.html %}
       <div class="entry-content">
         <h2>{{ page.title }}</h2>
-        <span>Published: {{ page.date }}</span>
+        <span>Published: {{ page.date | date: '%d %b %Y' }}</span>
         {{ content }}
       </div>
