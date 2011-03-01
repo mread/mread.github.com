@@ -9,8 +9,8 @@ title: The Operational Cost Savings Of Paying Off Technical Debt
 
 Inspired by blogs from [Tim Ottinger][1] and [Mike Feathers][2] I have been trying to come up with a way of analysing code to justify and explore the impact of the statement above in economic terms - i.e. how much will the business save by removing technical debt and how to decide which technical debt to remove first?
 
-What is _the cost of maintaining our system_? 
----------------------------------------------
+What is _the cost of maintaining our code_?
+-------------------------------------------
 
 This is the cost to the business of maintaining a "bug fix", "maintenance" or "operational support" team together with the testing and organisational support processes that these teams normally require. This team generally fill their backlog with small to medium-sized change requests and defects, these items often come through a user-facing helpdesk and series of approval and prioritisation meetings. I'm making the assumption that there would at some stage in the past have been a capital-funded project to deliver the feature to which these CRs and Defects apply. That project is now complete and has handed over to the maintenance team. 
 
@@ -25,7 +25,7 @@ What is _the cost of removing this technical debt_?
 
 There's no single answer to this one. Sometimes we might have to rewrite, sometimes we can refactor, in most cases we see poor test-coverage as a technical symptom that matches up with the diagnosis of technical debt and at minimum we might want to improve test-coverage. How much will this cost to do? There's nothing new here - we can only apply our existing scoping and estimating techniques to come up with a proposal to put a team together to resolve the issue. Of course we run the risk that the solution being proposed is no better than what we're replacing... please don't do that! After all we've now learnt an awful lot more about the business domain and about what the user really wants. Use the issues raised against this area to inform the new solution. Perhaps this is information that the original project team didn't have, or maybe they had it but other constraints stopped them from acting on it.
 
-How do we do this?
+How do we do it?
 ------------------
 
 Pre-amble over, we're down to the crux of this blog. If cost-to-fix(CTF) < cost-to-maintain(CTM) then you have business case for addressing the technical debt and if not, you don't. Or you could treat this is a way of measuring the time taken to achieve a return on investment instead - it depends on how these things are treated in your organisation.
