@@ -28,7 +28,7 @@ There's no single answer to this one. Sometimes we might have to rewrite, someti
 How do we do it?
 ------------------
 
-Pre-amble over, we're down to the crux of this blog. If cost-to-fix(CTF) < cost-to-maintain(CTM) then you have business case for addressing the technical debt and if not, you don't. Or you could treat this is a way of measuring the time taken to achieve a return on investment instead - it depends on how these things are treated in your organisation.
+Pre-amble over, we're down to the crux of this blog. If cost-to-fix(CTF) < cost-to-maintain(CTM) then you have business case for addressing the technical debt and if not, you don't. Or you could treat this as a way of measuring the time taken to achieve ROI instead - it depends on how these things are treated in your organisation.
 
 How do you measure CTF and CTM? Before we start, let's work out which area of our system we're going to focus on - which area has the highest CTM (and perhaps additionally - over what time period)?
 
