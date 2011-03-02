@@ -5,7 +5,6 @@ title: Blog
     {% include header.html %}
     {% include nav.html %}
     {% for post in site.posts limit:1 %}
-      <div id="container">
         <div class="page-nav-top">
           {% if post.previous %}
             <span class="page-nav-item">
@@ -39,6 +38,5 @@ title: Blog
           </span>
           {{ post.content }}
         </div> <!-- /.entry-content -->
-      </div> <!-- /#container -->
     {% endfor %}
     {% include footer.html %}

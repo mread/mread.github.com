@@ -3,7 +3,7 @@ layout: post
 title: The Operational Cost Savings Of Paying Off Technical Debt
 ---
 
-### *The technical debt in our code increases the cost of maintaining our code.
+### *The technical debt in our code increases the cost of maintaining our code.*
 
 ### *Is the cost of removing this technical debt less than the cost of leaving it in?*
 
