@@ -7,7 +7,7 @@ body {
 }
 
 #topStripe {
-	position: fixed;
+	position: relative;
 	top: 0px;
 	left: 0px; 
 	height: 60px;
@@ -18,8 +18,8 @@ body {
 }
 
 #menuStripe {
-	position: fixed;
-	top: 60px;
+	position: relative;
+	top: 0px;
 	left: 0px;
 	width: 100%;
 	height: 28px;
@@ -31,6 +31,8 @@ body {
 #container {
 	width: 710px;
 	margin: 0px auto;
+	position: relative;
+	top: -88px;
 }
 
 .topNav {
