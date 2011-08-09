@@ -5,7 +5,7 @@ title: What DDD isn't
 
 Well it's certainly not creating a couple of HashMaps in your code that contain properties that vaguely resemble something that one of your business sponsors mentioned in passing, and calling it DDD. No. It's not that although I suppose that's a start.
 
-It's not even creating a couple of classes that represent business concepts and putting a "public long getId();" method on them that returns a database generated sequence number. I mean that's a start, it really is, but people have been doing that for years - at best it's a relational model of the business domain.
+It's not even creating a couple of classes that represent business concepts and putting a `public long getId();` method on them that returns a database generated sequence number. I mean that's a start, it really is, but people have been doing that for years - at best it's a relational model of the business domain.
 
 For a start, get rid of the database generated ids - one test you can do that helps you to fathom this as follows. Imagine a conversation with a domain expert about a domain concept, let's say the guy behind the counter in the local kebab shop. (You've decided there's just not enough IT in kebabs these days and so you're going to write him some software to help him out). You ask him, "if someone walks in and asks for 3 chicken shish, one chilli sauce, two garlic, how do you keep track of which is which?" Which of these does he say?
 
