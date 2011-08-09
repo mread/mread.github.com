@@ -12,7 +12,7 @@ Imagine a conversation with a domain expert about a domain concept, let's say th
 
 1. "I phone up my friend with the computer and ask him to spark up Oracle, generate me the next number in kebab_sequence and then I write it on the wrapper."
 1. "I take a pseudo-random source of data, normally the temperature at the middle of my donner skewer and use it to seed a random number generator from which I can generate a UUID, of course I write this on the wrapper, it takes a while to write it my friend."
-1. "C for chilli, G for garlic?"
+1. "C for chilli, G for garlic"
 
 You've guessed it, at the point of kebab creation he does not, I repeat, *does not* generate a unique identifier for the finely crafted and indeed utterly unique kebab. In some ways the two garlic-sauced kebabs are indistinguishable and could even get confused, heaven forbid!
 
