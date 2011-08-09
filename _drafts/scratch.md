@@ -2,9 +2,6 @@
 layout: post
 title: What DDD isn't
 ---
-
-*Disclaimer: I struggle with titles for my blogs, for that matter with the content too. I am in no way trying to define Domain Driven Design - that responsibility lies with Eric Evans - but I see a huge potential to improve the usefulness of software in applying DDD and sadly see so many cases where teams pay lip-service to it without unlocking that potential. This article and hopefully others to follow are intending to assist with the shift in how development teams should think about development when applying DDD. If any of those that are far wiser than me believe I am not representing DDD correctly then let me know and I'll gladly adapt accordingly.*
-
 Well it's certainly not creating a couple of HashMaps in your code that contain properties that vaguely resemble something that one of your business sponsors mentioned in passing, and calling it DDD. No. It's not that although I suppose that's a start.
 
 It's not even creating a couple of classes that represent business concepts and putting a `public long getId();` method on them that returns a database generated sequence number. I mean that's a start, it really is, but people have been doing that for years - at best it's a relational model of the business domain.
@@ -30,3 +27,5 @@ Temporal coupling because in most cases you begin a resource and lock-hungry dat
 And context most importantly of all because in all the scenarios we've discussed there is absolutely no reason to uniquely distinguish your kebabs from all the other kebabs that have ever been served up (they all taste the same after a few beers anyway right?) You could perhaps imagine up a context where unique identity would be useful - a kebab archivist, travelling the world collecting data on every kebab ever produced in order to publish his great work "kebabs of the world".
 
 Are you building software for the kebab archivist? I think I'd probably ask him to generate his own ids to be honest.
+
+*Disclaimer: I struggle with titles for my blogs, for that matter with the content too. I am in no way trying to define Domain Driven Design - that responsibility lies with Eric Evans - but I see a huge potential to improve the usefulness of software in applying DDD and sadly see so many cases where teams pay lip-service to it without unlocking that potential. This article and hopefully others to follow are intending to assist with the shift in how development teams should think about development when applying DDD. If any of those that are far wiser than me believe I am not representing DDD correctly then let me know and I'll gladly adapt accordingly.*
