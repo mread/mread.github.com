@@ -1,6 +1,6 @@
 ---
 layout: post
-title: What DDD isn't
+title: What DDD isn't - part 1 - ditch the database
 ---
 Well it's certainly not creating a couple of HashMaps in your code that contain properties that vaguely resemble something that one of your business sponsors mentioned in passing, and calling it DDD. No. It's not that although I suppose that's a start.
 
