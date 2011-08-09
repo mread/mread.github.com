@@ -3,6 +3,8 @@ layout: post
 title: What DDD isn't
 ---
 
+*Disclaimer: I struggle with titles for my blogs, for that matter with the content too. I am in no way trying to define Domain Driven Design - that responsibility lies with Eric Evans - but I see a huge potential to improve the usefulness of software in applying DDD and sadly see so many cases where teams pay lip-service to it without unlocking that potential. This blog and hopefully others to follow attempt only to assist with the shift in how development teams have traditionally approached development.*
+
 Well it's certainly not creating a couple of HashMaps in your code that contain properties that vaguely resemble something that one of your business sponsors mentioned in passing, and calling it DDD. No. It's not that although I suppose that's a start.
 
 It's not even creating a couple of classes that represent business concepts and putting a `public long getId();` method on them that returns a database generated sequence number. I mean that's a start, it really is, but people have been doing that for years - at best it's a relational model of the business domain.
