@@ -18,7 +18,7 @@ You've guessed it, at the point of kebab creation he does not, I repeat, *does n
 
 Now as a software developer with years of experience it's very easy to smile sweetly at kebab man and go off and generate that primary key anyway. You're *sure* that all systems need ids right? That's how you've always done it. How else would you uniquely identify that kebab when you want to give it to the customer, or work out how much it costs?
 
-Well... no. This is an issue of dependency management, temporal coupling and of context.
+Well... no, please don't. The reasons are why not relate to dependency management, temporal coupling and context.
 
 Dependency management because in order to generate the id you normally have to persist the data to the database - *it does not have identity until it has been persisted*. That means you can't do anything with it that might use the id until it has been persisted. You can't give it a customer, you can't work out its cost, nothing. You do have a database right? You are ready to persist it? You can afford the I/O cost of persistence right now? The database software is an Infrastructure concern, you may not be planning to migrate to M$SqlServer tomorrow but please just trust me, you still don't want to have any dependencies between your domain and your infrastructure.
 
