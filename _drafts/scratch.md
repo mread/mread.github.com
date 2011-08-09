@@ -3,7 +3,7 @@ layout: post
 title: What DDD isn't
 ---
 
-*Disclaimer: I struggle with titles for my blogs, for that matter with the content too. I am in no way trying to define Domain Driven Design - that responsibility lies with Eric Evans - but I see a huge potential to improve the usefulness of software in applying DDD and sadly see so many cases where teams pay lip-service to it without unlocking that potential. This blog and hopefully others to follow attempt only to assist with the shift in how development teams have traditionally approached development.*
+*Disclaimer: I struggle with titles for my blogs, for that matter with the content too. I am in no way trying to define Domain Driven Design - that responsibility lies with Eric Evans - but I see a huge potential to improve the usefulness of software in applying DDD and sadly see so many cases where teams pay lip-service to it without unlocking that potential. This article and hopefully others to follow are intending to assist with the shift in how development teams should think about development when applying DDD. If any of those that are far wiser than me believe I am not representing DDD correctly then let me know and I'll gladly adapt accordingly.*
 
 Well it's certainly not creating a couple of HashMaps in your code that contain properties that vaguely resemble something that one of your business sponsors mentioned in passing, and calling it DDD. No. It's not that although I suppose that's a start.
 
