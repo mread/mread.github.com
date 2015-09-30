@@ -1,3 +1,2 @@
-_site/
-.project
-.classpath
+_site
+.sass-cache
