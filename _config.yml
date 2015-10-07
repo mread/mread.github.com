@@ -3,8 +3,8 @@ title: Matt's Techy Blog
 email:
 description: > # this means to ignore newlines until "baseurl:"
   I work at LMAX Exchange where I help develop a low latency trading venue using Java.
-  My focus is on continuous delivery, fast feedback and creating a working environment for
-  developers that challenges accepted limitations.
+  I lead the Technical Engineering team and my focus is on continuous delivery, fast feedback
+  and creating an efficient working environment for developers that challenges accepted limitations.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://mread.github.io" # the base hostname & protocol for your site
 #twitter_username: jekyllrb
