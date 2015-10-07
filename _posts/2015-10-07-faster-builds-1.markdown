@@ -20,8 +20,8 @@ This is fairly standard coarse-grained modularisation of the code, mostly driven
  a deployment lifecycle separation or in a few isolated cases, business concept separation. Each module was a separate 
  Subversion project, i.e. each had the /trunk, /branches, /tags structure. So when you commited a change to "monitoring"
  that relied on a change to "exchange" then you would be making two separate commits, each with its own Subversion 
- revision number. For a brief (and sometimes not so brief) period there would be code in the repository that didn't 
- work with other code in the repository.
+ revision number. For a brief (and sometimes not so brief) period there would be code in one module that didn't 
+ work with code in the other modules.
  
 Keeping these modules in-sync wasn't pleasant and often took a developer a whole day if the dependency being updated was 
  deep within a tree. We had to develop tooling just to assist this task.
@@ -30,12 +30,9 @@ This kind of friction discourges devs from using modules at all and breeds a res
  We've all been here and many teams accept this as an acceptable price of modularisation - after-all, there's so
  many tools in Java-land that support this approach as a defacto standard - Maven, Ivy, Artifactory, etc.
  
-## Why do we accept this?
-
 Looking at our build process objectively, a few things seem counter-intuitive.
 
-  1. Why do we go to such effort to compile separately then integration-test things that have binary dependencies on
-    each other? Why not just compile them together?
+  1. Modularisation is good but why should introducing modules have such a negative impact on our build process? 
   2. Why can't I throw more cores at this build process to make it go faster?
   3. Why do most of my builds start from a clean-slate and rebuild the same code over and over again?
   
@@ -48,16 +45,17 @@ Why? At that time our build process would compile, test and package the code for
  you'd already compiled and packaged all the other modules (a couple of minutes each) and setup the versions 
  correctly (yuck, hours). Where was all that additional time going?
 
-We started dropping BUCK files into our main module and watched the build times drop. Once the main module had decent
- coverage we started bringing the other modules under the same source tree and watched as integration activities disappeared.
- The team were happier, modularisation stopped being a dirty word, dependency management for both 3rd party tools and
- internal modules became quick and easy. A whole class of expensive activities just vanished from our process.
+We started dropping BUCK files into our main module and watched the build times drop. Once the main module was largely 
+ building with Buck we started moving the other modules under the same source tree and watched as manual module integration
+ just didn't need to happen anymore. The team were happier, modularisation stopped being a dirty word, dependency 
+ management for both 3rd party tools and internal modules became quick and easy. A whole class of expensive activities 
+ just vanished from our process.
  
 Taking a leaf out of the LMAX continuous performance tuning book we started measuring build times a few months before we
  began migrating to Buck (we now have data for half a million builds). I had always hoped that we would see the total 
  time spent building drop - if you're not waiting for builds then you're writing awesome code right? Instead we saw 
- the number builds go up, in fact it's now more than 5 times higher than it was 18 months ago. I guess we developers
- crave feedback, if we can get feedback quicker then we just grab more.
+ the number of builds per day increase, in fact it's now more than 5 times higher than it was 18 months ago. I guess we
+ developers crave feedback, if we can get feedback quicker then we just grab more.
    
 ## Why is it faster?
 
@@ -90,15 +88,16 @@ Note that this is an example a single (simple) Java module, resulting in a singl
  because fans of Maven often write-off this feature of Buck because Maven also has a parallel mode but last time I 
  looked this only applied to modules as a whole, not the individual activities within a module.
 
-Now multiply this by the number of java modules in your app, building a single DAG containing all the rules. Execute 
+Now multiply this by the number of Java modules in your app, building a single DAG containing all the rules. Execute 
  the DAG across multiple cores and you can expect to have all your cores at 100% utilisation for the majority of the 
- build.
+ build. Our build has several thousand parallelisable jobs so effective multi-core execution really makes a 
+ difference.
  
 Actually Buck doesn't quite parallelise exactly this way as tests are run in parallel with each other after all the 
 build steps are complete. We don't find this makes much difference to the optimal build times. I'm hoping to have time 
 to submit a pull request for this one day.
 
-## TBC
+## To be continued...
 
 In the next installment we'll cover some of the other reasons why building in this way is faster.
 
