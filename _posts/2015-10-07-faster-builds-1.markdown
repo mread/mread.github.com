@@ -12,7 +12,7 @@ At [LMAX][1] we've been using [Buck][2] and a monolithic source tree for about 1
 
 In 2013 most development was taking place against a single large source tree with a handful of other source trees that
  got occasional updates. The main tree contained all the code, configuration and tests for our core exchange. The 
- satellite modules (about 15) either depended on code in the exchange or were depended on by the this code.
+ satellite modules (about 15) either depended on code in the exchange or were depended on by this code.
 
 ![Before Buck]({{ "/assets/before-buck-1.png" | prepend: site.baseurl }})
 
