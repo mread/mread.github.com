@@ -84,7 +84,7 @@ There are 5 verbs in this diagram - analyse, compile (x2), test and package. Buc
 By laying out the rules in this way we can see that a degree of parallelism is possible during execution. i.e. you can
  analysis the app java and compile both the app java and the test java in parallel. 
 
-Note that this is an example a single (simple) Java module, resulting in a single .jar file. I draw attention to this point
+Note that this is an example of a single (simple) Java module, resulting in a single .jar file. I draw attention to this point
  because fans of Maven often write-off this feature of Buck because Maven also has a parallel mode but last time I 
  looked this only applied to modules as a whole, not the individual activities within a module.
 
