@@ -18,7 +18,7 @@ In 2013 most development was taking place against a single large source tree wit
 
 This is fairly standard coarse-grained modularisation of the code, mostly driven by either a technical separation of modules, 
  a deployment lifecycle separation or in a few isolated cases, business concept separation. Each module was a separate 
- Subversion project, i.e. each had the /trunk, /branches, /tags structure. So when you commited a change to "monitoring"
+ Subversion project, i.e. each had the /trunk, /branches, /tags structure. So when you committed a change to "monitoring"
  that relied on a change to "exchange" then you would be making two separate commits, each with its own Subversion 
  revision number. For a brief (and sometimes not so brief) period there would be code in one module that didn't 
  work with code in the other modules.
@@ -40,7 +40,7 @@ Being Ant-based, most build targets were single-threaded meaning the high core c
 
 This kind of friction discourages devs from using modules at all and breeds a resentment for the tools and processes.
  We've all been here and many teams accept this as an acceptable price of modularisation - after-all, there's so
- many tools in Java-land that support this approach as a defacto standard - Maven, Ivy, Artifactory, etc.
+ many tools in Java-land that support this approach as a de facto standard - Maven, Ivy, Artifactory, etc.
   
 Looking at our build process, a few things seemed counter-intuitive.
 
