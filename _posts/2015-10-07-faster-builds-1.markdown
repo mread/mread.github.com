@@ -4,7 +4,7 @@ title:  "Faster builds - part 1"
 categories: builds buck
 ---
 
-At [LMAX][1] we've been using [Buck][2] and a monolithic source tree for about 18 months. Prompted by the [recent talk from Google][3] 
+At [LMAX Exchange][1] we've been using [Buck][2] and a monolithic source tree for about 18 months. Prompted by the [recent talk from Google][3] 
  on how they do this kind of thing at massive scale and [some similar][4] [articles from Twitter][5] I thought I
  should post on how we do these things at LMAX where we call our engineering effectiveness team "Technical Engineering".
 
