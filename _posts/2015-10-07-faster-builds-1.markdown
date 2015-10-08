@@ -42,9 +42,10 @@ This kind of friction discourges devs from using modules at all and breeds a res
  We've all been here and many teams accept this as an acceptable price of modularisation - after-all, there's so
  many tools in Java-land that support this approach as a defacto standard - Maven, Ivy, Artifactory, etc.
   
-Looking at our build process objectively, a few things seem counter-intuitive.
+Looking at our build process, a few things seemed counter-intuitive.
 
-  1. Modularisation is good but why should introducing modules have such a negative impact on our build process? 
+  1. Modularisation is good for the long-term maintainability so why should introducing modules have such a negative 
+     impact on our build process? 
   2. Why can't I throw more cores at this build process to make it go faster?
   3. Why do my builds start from a clean-slate and rebuild the same code over and over again?
   
@@ -58,9 +59,12 @@ Why? At that time our build process would compile, test and package the code for
  correctly (yuck, hours). Where was all that additional time going?
 
 We started dropping BUCK files into our main module. There were some clear "seams" where modules were trying to emerge 
- and we could materialise these easily with a judiciously placed BUCK file. Build times began to drop as the build steps 
- began running concurrently. During this period we were support Ant and Buck builds concurrently which added a few 
- challenges. 
+ and we could materialise these easily with a judiciously placed BUCK file. It's orthogonal to the theme of this post but
+ it's interesting that our code clustered into groups with clearly defined responsibilities (i.e. modules) but our build 
+ process was resisting bringing these modules out into the open.
+
+Build times began to drop as the build steps began running concurrently. During this period we were supporting Ant and Buck 
+ builds concurrently which added a few challenges. 
 
 Once the main module was largely building with Buck we started moving the other modules under the same source tree and 
  watched as manual module integration just didn't need to happen anymore. The team were happier, modularisation stopped 
@@ -70,9 +74,9 @@ Once the main module was largely building with Buck we started moving the other 
  
 Taking a leaf out of the LMAX continuous performance tuning book we started measuring build times a few months before we
  began migrating to Buck (we now have data for half a million builds). We saw the number of builds per day increase 
- while the total time spent building remained roughly the same. We now build more than 5 times more frequently than we 
- did 18 months ago. Most builds now take less than a minute and tend to be proportional to the amount of change rather 
- than the total size of the code. We developers crave feedback, if we can get feedback quicker then we just grab more.
+ while the total time spent building remained roughly the same. We now build about 5 times as often as we 
+ did 18 months ago. Most builds now take less than a minute and are proportional to the amount of change rather 
+ than the total size of the code. Developers crave feedback, if we can get feedback quicker then we just grab more.
  
 I'll reiterate this because I think it's really important. The two principle questions that a developer should be asking
 about their commits:
