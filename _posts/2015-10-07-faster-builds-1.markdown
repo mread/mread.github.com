@@ -87,6 +87,9 @@ about their commits:
 It now takes less than a minute to get an answer.
 
 ![chart 1]({{ "/assets/chart-1.png" | prepend: site.baseurl }})
+
+*The mean build time is around 90 seconds due to a couple of long-running build targets, we're working to 
+ eliminate these. The median falls way below the one minute mark.*
    
 ## Why is it faster?
 
