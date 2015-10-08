@@ -16,25 +16,37 @@ In 2013 most development was taking place against a single large source tree wit
 
 ![Before Buck]({{ "/assets/before-buck-1.png" | prepend: site.baseurl }})
 
-This is fairly standard coarse-grained modularisation of the code, mostly driven by either a conceptual separation of modules, 
+This is fairly standard coarse-grained modularisation of the code, mostly driven by either a technical separation of modules, 
  a deployment lifecycle separation or in a few isolated cases, business concept separation. Each module was a separate 
  Subversion project, i.e. each had the /trunk, /branches, /tags structure. So when you commited a change to "monitoring"
  that relied on a change to "exchange" then you would be making two separate commits, each with its own Subversion 
  revision number. For a brief (and sometimes not so brief) period there would be code in one module that didn't 
  work with code in the other modules.
  
-Keeping these modules in-sync wasn't pleasant and often took a developer a whole day if the dependency being updated was 
- deep within a tree. We had to develop tooling just to assist this task.
+The build itself was based on Ant and there was some Ant script shared between the both the main and satellite modules. 
+ A typical build would first clean everything, then compile, package, test, analyse, etc. In order to integrate modules
+ you would do this to each module, then commit which triggered a publish, then go back to the dependent modules and update
+ version labels to point at the new published artifacts. This in turn would cause new version of the dependers to be
+ built, necessitating updates to modules that depended on them, etc.
  
+In short, keeping these modules in-sync wasn't pleasant and often took a developer a whole day if the dependency being 
+ updated was deep within a tree. We had to develop tooling just to assist this task. Most concerning of all in terms
+ of the long term direction of our build process - the more modular you got, the more painful this process got - a
+ trendline pointing in the wrong direction.
+ 
+Being Ant-based, most build targets were single-threaded meaning the high core count on our pairing stations and in our
+ CI environment wasn't helping. The exception being the unit tests which were run in parallel thanks to 
+ LMAX's [parallel-junit][6].
+
 This kind of friction discourges devs from using modules at all and breeds a resentment for the tools and processes.
  We've all been here and many teams accept this as an acceptable price of modularisation - after-all, there's so
  many tools in Java-land that support this approach as a defacto standard - Maven, Ivy, Artifactory, etc.
- 
+  
 Looking at our build process objectively, a few things seem counter-intuitive.
 
   1. Modularisation is good but why should introducing modules have such a negative impact on our build process? 
   2. Why can't I throw more cores at this build process to make it go faster?
-  3. Why do most of my builds start from a clean-slate and rebuild the same code over and over again?
+  3. Why do my builds start from a clean-slate and rebuild the same code over and over again?
   
 ## Enter Buck
 
@@ -45,22 +57,37 @@ Why? At that time our build process would compile, test and package the code for
  you'd already compiled and packaged all the other modules (a couple of minutes each) and setup the versions 
  correctly (yuck, hours). Where was all that additional time going?
 
-We started dropping BUCK files into our main module and watched the build times drop. Once the main module was largely 
- building with Buck we started moving the other modules under the same source tree and watched as manual module integration
- just didn't need to happen anymore. The team were happier, modularisation stopped being a dirty word, dependency 
- management for both 3rd party tools and internal modules became quick and easy. A whole class of expensive activities 
- just vanished from our process.
+We started dropping BUCK files into our main module. There were some clear "seams" where modules were trying to emerge 
+ and we could materialise these easily with a judiciously placed BUCK file. Build times began to drop as the build steps 
+ began running concurrently. During this period we were support Ant and Buck builds concurrently which added a few 
+ challenges. 
+
+Once the main module was largely building with Buck we started moving the other modules under the same source tree and 
+ watched as manual module integration just didn't need to happen anymore. The team were happier, modularisation stopped 
+ being a dirty word, dependency management for both 3rd party tools and internal modules became quick and easy.
+ 
+**A whole class of expensive activities just vanished from our process.**
  
 Taking a leaf out of the LMAX continuous performance tuning book we started measuring build times a few months before we
- began migrating to Buck (we now have data for half a million builds). I had always hoped that we would see the total 
- time spent building drop - if you're not waiting for builds then you're writing awesome code right? Instead we saw 
- the number of builds per day increase, in fact it's now more than 5 times higher than it was 18 months ago. I guess we
- developers crave feedback, if we can get feedback quicker then we just grab more.
+ began migrating to Buck (we now have data for half a million builds). We saw the number of builds per day increase 
+ while the total time spent building remained roughly the same. We now build more than 5 times more frequently than we 
+ did 18 months ago. Most builds now take less than a minute and tend to be proportional to the amount of change rather 
+ than the total size of the code. We developers crave feedback, if we can get feedback quicker then we just grab more.
+ 
+I'll restate this because I think it's really important. The two principle questions that a developer should be asking
+about their commits:
+
+  * Does my code work?
+  * Did I break anything else in the process?
+  
+It now takes less than a minute to get an answer.
    
 ## Why is it faster?
 
 ### Parallelism
 
+Bearing in mind that our Ant build was largely single-threaded, our first win was parallelism.
+ 
 Take the basic anatomy of building a Java application.
 
 ![lifecycle 1]({{ "/assets/java-build-lifecycle-1.png" | prepend: site.baseurl }})
@@ -82,7 +109,7 @@ There are 5 verbs in this diagram - analyse, compile (x2), test and package. Buc
 ![lifecycle 4]({{ "/assets/java-build-lifecycle-4.png" | prepend: site.baseurl }})
 
 By laying out the rules in this way we can see that a degree of parallelism is possible during execution. i.e. you can
- analysis the app java and compile both the app java and the test java in parallel. 
+ analyse the java source while you're compiling it. You can package it while you're compiling its tests. 
 
 Note that this is an example a single (simple) Java module, resulting in a single .jar file. I draw attention to this point
  because fans of Maven often write-off this feature of Buck because Maven also has a parallel mode but last time I 
@@ -92,10 +119,6 @@ Now multiply this by the number of Java modules in your app, building a single D
  the DAG across multiple cores and you can expect to have all your cores at 100% utilisation for the majority of the 
  build. Our build has several thousand parallelisable jobs so effective multi-core execution really makes a 
  difference.
- 
-Actually Buck doesn't quite parallelise exactly this way as tests are run in parallel with each other after all the 
-build steps are complete. We don't find this makes much difference to the optimal build times. I'm hoping to have time 
-to submit a pull request for this one day.
 
 ## To be continued...
 
@@ -106,3 +129,4 @@ In the next installment we'll cover some of the other reasons why building in th
 [3]: https://www.youtube.com/watch?v=W71BTkUbdqE
 [4]: http://spectrum.ieee.org/view-from-the-valley/computing/software/twitters-tips-for-making-software-engineers-more-efficient
 [5]: http://www.gigamonkeys.com/flowers/
+[6]: https://github.com/LMAX-Exchange/parallel-junit
