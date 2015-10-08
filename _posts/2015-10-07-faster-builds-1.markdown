@@ -38,7 +38,7 @@ Being Ant-based, most build targets were single-threaded meaning the high core c
  CI environment wasn't helping. The exception being the unit tests which were run in parallel thanks to 
  LMAX's [parallel-junit][6].
 
-This kind of friction discourges devs from using modules at all and breeds a resentment for the tools and processes.
+This kind of friction discourages devs from using modules at all and breeds a resentment for the tools and processes.
  We've all been here and many teams accept this as an acceptable price of modularisation - after-all, there's so
  many tools in Java-land that support this approach as a defacto standard - Maven, Ivy, Artifactory, etc.
   
