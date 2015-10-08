@@ -7,7 +7,7 @@ description: > # this means to ignore newlines until "baseurl:"
   and creating an efficient working environment for developers that challenges accepted limitations.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://mread.github.io" # the base hostname & protocol for your site
-#twitter_username: jekyllrb
+twitter_username: Matt_Read
 github_username:  mread
 
 # Build settings
