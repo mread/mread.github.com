@@ -74,13 +74,15 @@ Taking a leaf out of the LMAX continuous performance tuning book we started meas
  did 18 months ago. Most builds now take less than a minute and tend to be proportional to the amount of change rather 
  than the total size of the code. We developers crave feedback, if we can get feedback quicker then we just grab more.
  
-I'll restate this because I think it's really important. The two principle questions that a developer should be asking
+I'll reiterate this because I think it's really important. The two principle questions that a developer should be asking
 about their commits:
 
   * Does my code work?
-  * Did I break anything else in the process?
+  * Did I break anything else?
   
 It now takes less than a minute to get an answer.
+
+![chart 1]({{ "/assets/chart-1.png" | prepend: site.baseurl }})
    
 ## Why is it faster?
 
@@ -111,8 +113,8 @@ There are 5 verbs in this diagram - analyse, compile (x2), test and package. Buc
 By laying out the rules in this way we can see that a degree of parallelism is possible during execution. i.e. you can
  analyse the java source while you're compiling it. You can package it while you're compiling its tests. 
 
-Note that this is an example of a single (simple) Java module, resulting in a single .jar file. I draw attention to this point
- because fans of Maven often write-off this feature of Buck because Maven also has a parallel mode but last time I 
+Note that this is an example of a single (simple) Java module, resulting in a single .jar file. I draw attention to this 
+ point because fans of Maven often write-off this feature of Buck because Maven also has a parallel mode but last time I 
  looked this only applied to modules as a whole, not the individual activities within a module.
 
 Now multiply this by the number of Java modules in your app, building a single DAG containing all the rules. Execute 
