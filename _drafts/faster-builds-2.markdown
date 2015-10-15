@@ -25,13 +25,13 @@ Let's say your team commits on average 100 times per day. That's our average at 
 $$
 \begin{align}
 
-& 5\ \text{minutes} \\ 
+5\ &\text{minutes} \\ 
 \times 
-& 100\ \text{commits} \\ 
+100\ &\text{commits} \\ 
 \times 
-& 3\ \text{builds} \\ 
+3\ &\text{builds} \\ 
 \approx 
-& 25\ \text{hours spent building per day}
+25\ &\text{hours spent building per day}
 
 \end{align}
 $$
