@@ -7,3 +7,5 @@ There's a maturity scale for automated deployment
 4. ability to specify any combination of component versions, test this combination together, deploy it
 5. run multiple different but compatible combinations in live
 6. zero downtime deployments
+
+N.B. difference between continuous delivery and continuous deployment
