@@ -1,5 +1,5 @@
 
-There's a maturity scale for automated deployment
+Here's a maturity scale for automated deployment. I'd like to expand it eventually to show the kind of solutions you need to put in place to achieve each one. Perhaps also the criteria for achieving a particular stage.
 
 1. deploy the latest version of all components in parallel
 2. deploy only the components that have changed in a parallel
